@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import './Style.css';
-import { ProductContext } from '../App';
+import { CartContext, ProductContext } from '../App';
 
 export default function ProductCard(props) {
   const { product } = props;
-  const { productNo, setProductNo, setPage} = useContext(ProductContext);
+  const { setProductNo, setPage } = useContext(ProductContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const handleClick = () => {
     setProductNo(product.id);
     setPage(3);
+  };
+
+  const addToCart = () => {
+    setCart((prevCart) => [...prevCart, product]);
   };
 
   return (
@@ -18,7 +23,11 @@ export default function ProductCard(props) {
         <p onClick={handleClick}>{product.title}</p>
         <h3 onClick={handleClick}>${product.price}</h3>
       </div>
-      <button className="addCart">Add to cart</button>
+      <button className="addCart" onClick={addToCart}>
+        Add to cart
+      </button>
+      
+      
     </div>
   );
 }

@@ -28,6 +28,33 @@ h1 {
 .loadimage{
   width: 15%;
 }
+
+.cartItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 11px;
+  padding: 20px;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.08);
+  margin-bottom: 25px;
+}
+
+.cartImage {
+  max-width: 100px;
+  margin-right: 20px;
+}
+
+.cartItem p {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.cartItem h2 {
+  margin-left: auto;
+}
 /* /product card stil özellikleri/ */
 
 .product-grid {

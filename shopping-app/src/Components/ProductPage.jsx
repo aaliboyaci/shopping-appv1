@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './Style.css';
-import { ProductContext } from '../App';
+import { ProductContext, CartContext } from '../App';
 import Loading from './Loading';
 
 export default function ProductPage() {
   const { productNo, isLoading, setIsLoading } = useContext(ProductContext);
   const [product, setProduct] = useState(null);
+  const { cart, setCart } = useContext(CartContext);
 
 
   useEffect(() => {
@@ -24,6 +25,10 @@ export default function ProductPage() {
     }
   };
 
+  const addToCart = () => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
+
   return (
     <div>
       {isLoading && <Loading />}
@@ -36,7 +41,7 @@ export default function ProductPage() {
             <h2>{product.title}</h2>
             <p>{product.description}</p>
             <h3>${product.price}</h3>
-            <button className="add-to-cart">Add To Cart</button>
+            <button className="add-to-cart" onClick={addToCart}>Add To Cart</button>
           </div>
         </div>
       )}
