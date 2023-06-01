@@ -15,7 +15,19 @@ h1 {
   font-size: 13px;
   border-top: 1px solid rgb(53, 53, 53);
 }
+.isLoading{
+  background-color: black;
+  border-radius: 20px;
+  color: white;
+  margin: auto;
+  padding: 15px;
+  width: 30%;
 
+}
+
+.loadimage{
+  width: 15%;
+}
 /* /product card stil özellikleri/ */
 
 .product-grid {
@@ -64,11 +76,12 @@ h1 {
 
 .product-image {
   flex: 1;
-  max-width: 100%;
+  width: 60%;
+  
 }
 
 .product-image img {
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 
@@ -178,6 +191,19 @@ h1 {
   
   .product-details {
     padding-top: 20px;
+  }
+
+  .isLoading{
+    background-color: black;
+    border-radius: 30px;
+    color: white;
+    margin: auto;
+    padding: 15px;
+  
+  }
+  
+  .loadimage{
+    width: 15%;
   }
 }
 

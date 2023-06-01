@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Style.css';
 import ProductCard from './ProductCard';
+import { ProductContext } from '../App';
+import Loading from './Loading';
 
-export default function Main(props) {
+export default function Main() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
-  console.log(products);
-
+  const { isLoading, setIsLoading } = useContext(ProductContext);
 
   useEffect(() => {
-   fetchProducts();
-  }, [currentPage, products]);
+    setIsLoading(true);
+    fetchProducts();
+  }, [currentPage]);
 
   const fetchProducts = async () => {
     try {
@@ -20,6 +21,7 @@ export default function Main(props) {
       const startIndex = (currentPage - 1) * 9;
       const endIndex = startIndex + 9;
       setProducts(data.slice(startIndex, endIndex));
+      setIsLoading(false);
     } catch (error) {
       console.error('Veri çekme hatası:', error);
     }
@@ -35,10 +37,11 @@ export default function Main(props) {
 
   return (
     <div>
+      {isLoading && <Loading />}
       <div className="product-grid">
+
         {products.map((product) => (
-         <> <ProductCard key={product.id} id={product.id} setPage={props.setPage} product={product} setProductNo={props.setProductNo}/>
-          </>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
       <div className="pagination">
