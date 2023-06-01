@@ -34,7 +34,7 @@ h1 {
   flex-direction: row;
   align-items: center;
   background-color: #ffffff;
-  border-radius: 11px;
+  border-radius: 15px;
   padding: 20px;
   text-align: center;
   -webkit-box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.1);
@@ -52,8 +52,18 @@ h1 {
   text-align: center;
 }
 
-.cartItem h2 {
+.pricetag {
   margin-left: auto;
+}
+.clearCart{
+  border: none;
+  border-radius: 8px;
+  background-color: #a40000;
+  color: white;
+  padding: 9px;
+}
+.clearCart:hover{
+  background-color: red;
 }
 /* /product card stil özellikleri/ */
 
@@ -174,6 +184,9 @@ h1 {
   padding: 10px 20px;
   color: white;
 }
+.goToCart:hover{
+  background-color: #166fcd;
+}
 
 .addCart{
 
@@ -231,6 +244,32 @@ h1 {
   
   .loadimage{
     width: 15%;
+  }
+
+  .cartItem {
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    -webkit-box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.08);
+    margin-bottom: 22px;
+  }
+  
+  .cartImage {
+    max-width: 80px;
+    margin-right: 13px;
+  }
+  
+  .cartItem p {
+    font-size: 9px;
+    flex-grow: 1;
+    text-align: center;
+    padding: 5px;
+  }
+  
+  .pricetag {
+    font-size: smaller;
+    margin-left: auto;
   }
 }
 
