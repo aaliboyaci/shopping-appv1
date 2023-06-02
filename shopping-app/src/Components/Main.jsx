@@ -7,6 +7,7 @@ import Loading from './Loading';
 export default function Main() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const { isLoading, setIsLoading } = useContext(ProductContext);
 
   useEffect(() => {
@@ -22,6 +23,8 @@ export default function Main() {
       const endIndex = startIndex + 9;
       setProducts(data.slice(startIndex, endIndex));
       setIsLoading(false);
+      setTotalPages(Math.ceil(data.length / 9)); // Toplam sayfa sayısını hesapla
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error('Veri çekme hatası:', error);
     }
@@ -37,18 +40,24 @@ export default function Main() {
 
   return (
     <div>
-      {isLoading && <Loading />}
-      <div className="product-grid">
-
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
       <div className="pagination">
-        {currentPage > 1 && <button onClick={previousPage}>Previous Page</button>}
-        <p>Page {currentPage}</p>
-        <button onClick={nextPage}>Next Page</button>
+        {currentPage > 1 && <button onClick={previousPage}> Previous </button>}
+        <p> Page {currentPage} </p>
+        {currentPage < totalPages && <button onClick={nextPage}> Next </button>}
+      </div>
+      <br></br>
+      {isLoading ? <Loading /> :
+        <div className="product-grid">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>}
+      <div className="pagination">
+        {currentPage > 1 && <button onClick={previousPage}> Previous </button>}
+        <p> Page {currentPage} </p>
+        {currentPage < totalPages && <button onClick={nextPage}> Next </button>}
       </div>
     </div>
   );
 }
+

@@ -197,6 +197,17 @@ h1 {
   border-radius: 7px;
 }
 
+/* next prev butonlar*/
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination button {
+  margin: 0 10px;
+}
+
 @media (max-width: 767px) {
   .Header {
     flex-direction: column;
@@ -243,7 +254,7 @@ h1 {
   }
   
   .loadimage{
-    width: 15%;
+    width: 40%;
   }
 
   .cartItem {
