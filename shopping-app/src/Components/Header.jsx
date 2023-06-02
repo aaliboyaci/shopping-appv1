@@ -9,7 +9,6 @@ export default function Header() {
 
   const { cart, setCart, user, isLogin } = useContext(CartContext);
   const { setPage } = useContext(ProductContext);
-  console.log(user);
   return (
     <div className="Header">
       <div className="AppName"> <h1 onClick={() => setPage(0)}> Shopping App</h1></div>
