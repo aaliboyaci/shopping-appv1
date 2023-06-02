@@ -26,8 +26,8 @@ export default function ProductCard(props) {
       <button className="addCart" onClick={addToCart}>
         Add to cart
       </button>
-      
-      
+
+
     </div>
   );
 }
