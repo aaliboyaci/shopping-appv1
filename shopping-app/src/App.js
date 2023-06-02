@@ -13,17 +13,19 @@ export const ProductContext = React.createContext();
 export const CartContext = React.createContext();
 
 function App() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [productNo, setProductNo] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState([]);
+  const [isLogin, setIsLogin] = useState(0);
+  const [user, setUser] = useState([]);
 
 
 
   return (
     <div className="Container">
       {/* ProductContext.Provider ile verileri paylaş */}
-      <CartContext.Provider value={{ cart, setCart }}>
+      <CartContext.Provider value={{ cart, setCart, isLogin, setIsLogin, user, setUser }}>
         <ProductContext.Provider value={{ productNo, setProductNo, setPage, isLoading, setIsLoading }}>
           <Header setPage={setPage} />
           <br />

@@ -226,7 +226,15 @@ h1 {
 .pagebutton:hover {
   background-color: #166fcd;
 }
+/*login sayfası*/
 
+.input{
+  width: 40%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  border: #166fcd;
+}
 @media (max-width: 767px) {
   .Header {
 
@@ -304,5 +312,9 @@ h1 {
   .pricetag {
     font-size: smaller;
     margin-left: auto;
+  }
+  .input{
+    width: 75%;
+   
   }
 }
