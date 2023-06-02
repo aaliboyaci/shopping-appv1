@@ -19,11 +19,12 @@ export default function Main() {
     try {
       const response = await fetch('https://fakestoreapi.com/products');
       const data = await response.json();
-      const startIndex = (currentPage - 1) * 9;
-      const endIndex = startIndex + 9;
+      const itemsPerPage = 9;
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
       setProducts(data.slice(startIndex, endIndex));
       setIsLoading(false);
-      setTotalPages(Math.ceil(data.length / 9)); // Toplam sayfa sayısını hesapla
+      setTotalPages(Math.ceil(data.length / itemsPerPage));
       window.scrollTo(0, 0);
     } catch (error) {
       console.error('Veri çekme hatası:', error);
@@ -40,20 +41,29 @@ export default function Main() {
 
   return (
     <div>
-      
-      <br></br>
-      {isLoading ? <Loading /> :
+      <br />
+      {isLoading ? (
+        <Loading />
+      ) : (
         <div className="product-grid">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>}
+        </div>
+      )}
       <div className="pagination">
-        {currentPage > 1 && <button className="pagebutton" onClick={previousPage}> {"< <"} </button>}
-        <p> Page {currentPage} </p>
-        {currentPage < totalPages && <button className="pagebutton" onClick={nextPage}> {"> >"} </button>}
+        {currentPage > 1 && (
+          <button className="pagebutton" onClick={previousPage}>
+            {"<"}
+          </button>
+        )}
+        <p>Page {currentPage}</p>
+        {currentPage < totalPages && (
+          <button className="pagebutton" onClick={nextPage}>
+            {">"}
+          </button>
+        )}
       </div>
     </div>
   );
 }
-
