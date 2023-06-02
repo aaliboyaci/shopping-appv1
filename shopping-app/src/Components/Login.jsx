@@ -5,7 +5,11 @@ import "./Style.css"
 
 export default function Login() {
   const { setUser, user, isLogin, setIsLogin } = useContext(CartContext);
-  const { setPage} = useContext(ProductContext);
+  const { setPage } = useContext(ProductContext);
+
+  useEffect(() => {
+    fetchUser();
+  }, []); // Boş dependency array ekleyerek fetchUser fonksiyonunun sadece bir kere çağrılmasını sağlayabilirsiniz
 
   const fetchUser = () => {
     fetch('https://fakestoreapi.com/users')
@@ -52,9 +56,7 @@ export default function Login() {
     setPassword("");
   };
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
+ 
 
   return (
     <>
@@ -68,11 +70,11 @@ export default function Login() {
         <button className='goToCart' type="submit">Login</button>
       </form>
       <br></br>
-      {isLogin===2 && <h2>Login Failed</h2>}
-      {isLogin===1 && <h2>Login Successful</h2>}
-      {console.log("userbilgsi")}
-      {console.log(user)}
-      
+      {isLogin === 2 && <h2>Login Failed</h2>}
+      {isLogin === 1 && <h2>Login Successful</h2>}
+      {/* {console.log("userbilgsi")}
+      {console.log(user)} */}
+
     </>
   )
 }

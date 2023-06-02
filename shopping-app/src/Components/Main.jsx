@@ -40,11 +40,7 @@ export default function Main() {
 
   return (
     <div>
-      <div className="pagination">
-        {currentPage > 1 && <button className="pagebutton" onClick={previousPage}> {"< <"} </button>}
-        <p> Page {currentPage} </p>
-        {currentPage < totalPages && <button className="pagebutton" onClick={nextPage}> {"> >"} </button>}
-      </div>
+      
       <br></br>
       {isLoading ? <Loading /> :
         <div className="product-grid">
