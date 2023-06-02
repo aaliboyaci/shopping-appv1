@@ -13,7 +13,7 @@ export const ProductContext = React.createContext();
 export const CartContext = React.createContext();
 
 function App() {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [productNo, setProductNo] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState([]);
