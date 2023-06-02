@@ -45,6 +45,7 @@ export default function Login() {
       setPage(0);
     } else {
       setIsLogin(2);
+      console.clear();
       console.log('Doğrulama Başarısız');
     }
 

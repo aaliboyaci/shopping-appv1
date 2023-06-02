@@ -10,6 +10,10 @@ h1 {
   color: rgb(5, 55, 111);
 }
 
+h1:hover{
+  color: #166fcd;
+}
+
 .Footer {
   color: rgb(203, 203, 203);
   font-size: 13px;
@@ -86,6 +90,7 @@ h1 {
   text-align: center;
   -webkit-box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.10);
   box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.08);
+  transition: 500ms;
 }
 
 .product-card:hover {
@@ -201,10 +206,14 @@ h1 {
 .addCart {
 
   border: none;
-  background-color: #337ab7;
+  background-color:  rgb(5, 55, 111);
   color: white;
   padding: 6px;
   border-radius: 7px;
+}
+
+.addCart:hover {
+  background-color: #166fcd;
 }
 
 /* next prev butonlar*/

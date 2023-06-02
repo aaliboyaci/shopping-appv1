@@ -9,11 +9,11 @@ export default function UserPage() {
   const { setPage } = useContext(ProductContext);
 
   return (
-    <div class="user-page">
+    <div className="user-page">
       {isLogin === 1 ? (
-        <div class="user-details">
+        <div className="user-details">
           <h2>User Information</h2>
-          <div class="user-info">
+          <div className="user-info">
             <p>
               <strong>ID:</strong> {user.id}
             </p>
