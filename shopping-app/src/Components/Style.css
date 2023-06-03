@@ -1,9 +1,28 @@
 .Header {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(53, 53, 53);
-  padding-bottom: 8px;
+  background-color: white;
+  -webkit-box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.AppPage {
+  padding-top: 89px;
+}
+
+.AppName {
+  margin-left: 15px;
+}
+
+.topRightWelcome {
+  margin: 15px 30px 12px 5px;
 }
 
 h1 {
@@ -91,7 +110,7 @@ h1:hover {
   -webkit-box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.10);
   box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.08);
   transition: 500ms;
-  user-select: none; 
+  user-select: none;
 }
 
 .product-card:hover {
@@ -169,9 +188,10 @@ h1:hover {
   font-size: 16px;
   cursor: pointer;
 }
-.add-to-cart:hover{
+
+.add-to-cart:hover {
   background-color: #166fcd;
-  
+
 }
 
 .user-page {
@@ -252,10 +272,12 @@ h1:hover {
   border-radius: 20px;
   border: #166fcd;
 }
-.addedToCartMessage{
+
+.addedToCartMessage {
   color: green;
 
 }
+
 /* remove item animasyonlar*/
 
 .slide-enter {

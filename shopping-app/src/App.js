@@ -19,7 +19,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [isLogin, setIsLogin] = useState(0);
   const [user, setUser] = useState([]);
-   const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
 
@@ -29,18 +29,19 @@ function App() {
       <CartContext.Provider value={{ cart, setCart, isLogin, setIsLogin, user, setUser }}>
         <ProductContext.Provider value={{ productNo, setProductNo, setPage, isLoading, setIsLoading, currentPage, setCurrentPage }}>
           <Header setPage={setPage} />
-          <br />
-          {page === 0 && <Main />}
-          {page === 1 && <Login />}
-          {page === 2 && <UserPage />}
-          {page === 3 && <ProductPage />}
-          {page === 4 && <Cart />}
+          <br /><div className='AppPage'>
+            {page === 0 && <Main />}
+            {page === 1 && <Login />}
+            {page === 2 && <UserPage />}
+            {page === 3 && <ProductPage />}
+            {page === 4 && <Cart />}
+          </div>
         </ProductContext.Provider></CartContext.Provider>
       <br />
       <Footer />
-      {/* {console.clear()} */}
+      {console.clear()}
     </div>
-    
+
   );
 }
 
