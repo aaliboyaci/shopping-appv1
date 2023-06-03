@@ -37,7 +37,7 @@ function App() {
         </ProductContext.Provider></CartContext.Provider>
       <br />
       <Footer />
-      {console.clear()}
+      {/* {console.clear()} */}
     </div>
     
   );
