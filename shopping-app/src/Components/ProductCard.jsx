@@ -20,7 +20,7 @@ export default function ProductCard(props) {
     setShowAddToCartMessage(true);
     setTimeout(() => {
       setShowAddToCartMessage(false);
-    }, 750);
+    }, 860);
   };
 
   return (

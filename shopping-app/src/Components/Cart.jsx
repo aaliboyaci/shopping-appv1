@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { CartContext, ProductContext } from '../App';
 import './Style.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import backimg from "../Assets/backar.png"
 
 export default function Cart() {
     const { cart, setCart } = useContext(CartContext);
@@ -22,7 +23,7 @@ export default function Cart() {
                 <button className="clearCart" onClick={() => setCart([])}>Clear Cart</button>
                 <br /> <br /></>
             ) : (
-                <button className='goToCart' onClick={() => setPage(0)}>Back to shopping</button>
+                <button className='goToCart' onClick={() => setPage(0)}><img  style={{ width: `13px` }}src={backimg}></img> Back to shopping</button>
             )}
             <div>
             <TransitionGroup>

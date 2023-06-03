@@ -91,6 +91,7 @@ h1:hover {
   -webkit-box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.10);
   box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.08);
   transition: 500ms;
+  user-select: none; 
 }
 
 .product-card:hover {
