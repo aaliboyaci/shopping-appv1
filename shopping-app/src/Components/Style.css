@@ -251,7 +251,10 @@ h1:hover {
   border-radius: 20px;
   border: #166fcd;
 }
+.addedToCartMessage{
+  color: green;
 
+}
 /* remove item animasyonlar*/
 
 .slide-enter {

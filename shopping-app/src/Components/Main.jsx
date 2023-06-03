@@ -6,9 +6,8 @@ import Loading from './Loading';
 
 export default function Main() {
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const { isLoading, setIsLoading } = useContext(ProductContext);
+  const {isLoading, setIsLoading, currentPage, setCurrentPage } = useContext(ProductContext);
 
   useEffect(() => {
     setIsLoading(true);

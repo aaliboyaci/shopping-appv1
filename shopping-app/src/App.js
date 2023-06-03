@@ -19,6 +19,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [isLogin, setIsLogin] = useState(0);
   const [user, setUser] = useState([]);
+   const [currentPage, setCurrentPage] = useState(1);
 
 
 
@@ -26,7 +27,7 @@ function App() {
     <div className="Container">
       {/* ProductContext.Provider ile verileri paylaş */}
       <CartContext.Provider value={{ cart, setCart, isLogin, setIsLogin, user, setUser }}>
-        <ProductContext.Provider value={{ productNo, setProductNo, setPage, isLoading, setIsLoading }}>
+        <ProductContext.Provider value={{ productNo, setProductNo, setPage, isLoading, setIsLoading, currentPage, setCurrentPage }}>
           <Header setPage={setPage} />
           <br />
           {page === 0 && <Main />}
