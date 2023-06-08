@@ -1,13 +1,11 @@
 import React from 'react'
-import './Style.css';
-import loading from "../Assets/loading.gif"
+import './Spinner.css';
+
 
 export default function Loading() {
     return (
-        <div className="isLoading">
-            <img src={loading} alt='loading' className="loadimage"></img>
-            <h2>Loading</h2>
-
-        </div>
+        <div className="Loading">
+        <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+       </div> <h1>LOADING</h1></div>
     )
 }

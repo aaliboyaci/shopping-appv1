@@ -1,53 +1,63 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import './Style.css';
 import ProductCard from './ProductCard';
-import { ProductContext } from '../App';
+import { MainContext } from '../Context/MainProvider';
 import Loading from './Loading';
+import { useNavigate } from 'react-router-dom';
 
 export default function Main() {
-  const [products, setProducts] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const {isLoading, setIsLoading, currentPage, setCurrentPage } = useContext(ProductContext);
+  const mainContext = useContext(MainContext);
+  const { products, setProducts, isLoading, setIsLoading, currentPage, setCurrentPage } = mainContext;
+  const [totalPages, setTotalPages] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://fakestoreapi.com/products');
+        const data = await response.json();
+        const itemsPerPage = 9;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        setProducts(data.slice(startIndex, endIndex));
+        setIsLoading(false);
+        setTotalPages(Math.ceil(data.length / itemsPerPage));
+        window.scrollTo(0, 0);
+      } catch (error) {
+        console.error('Veri çekme hatası:', error);
+      }
+    };
     setIsLoading(true);
     fetchProducts();
-  }, [currentPage]);
+  }, [currentPage, setIsLoading, setProducts]);
 
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch('https://fakestoreapi.com/products');
-      const data = await response.json();
-      const itemsPerPage = 9;
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      setProducts(data.slice(startIndex, endIndex));
-      setIsLoading(false);
-      setTotalPages(Math.ceil(data.length / itemsPerPage));
-      window.scrollTo(0, 0);
-    } catch (error) {
-      console.error('Veri çekme hatası:', error);
+
+
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
     }
   };
 
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
   const previousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
   };
 
   return (
     <div>
+      {console.log(products)}
       <br />
       {isLoading ? (
         <Loading />
       ) : (
         <div className="product-grid">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {products && products.length > 0 && (
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          )}
         </div>
       )}
       <div className="pagination">
@@ -63,6 +73,8 @@ export default function Main() {
           </button>
         )}
       </div>
+      <br />
+      <button className='goToCart' onClick={() => { navigate('/cart') }}>Go to Cart</button>
     </div>
   );
 }

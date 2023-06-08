@@ -1,28 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import { CartContext, ProductContext } from '../App';
+import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import "./Style.css"
+import './Style.css';
+import { MainContext } from '../Context/MainProvider';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const { setUser, user, isLogin, setIsLogin } = useContext(CartContext);
-  const { setPage } = useContext(ProductContext);
+  const { setUser, user, isLogin, setIsLogin } = useContext(MainContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // useNavigate kancasını burada kullanın
 
   useEffect(() => {
-    fetchUser();
-  }, []);
+    const fetchUser = () => {
+      fetch('https://fakestoreapi.com/users')
+        .then((response) => response.json())
+        .then((result) => {
+          setUser(result);
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    };
 
-  const fetchUser = () => {
-    fetch('https://fakestoreapi.com/users')
-      .then((response) => response.json())
-      .then((result) => {
-        setUser(result);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  };
+    fetchUser();
+  }, [setUser]);
+
+  
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -35,14 +38,12 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const loginUser = user.find(
-      (u) => u.username === username && u.password === password
-    );
+    const loginUser = user.find((u) => u.username === username && u.password === password);
 
     if (loginUser) {
       setIsLogin(1);
       setUser(loginUser);
-      setPage(0);
+      navigate('/'); // Doğru şekilde navigate kancasını kullanın
     } else {
       setIsLogin(2);
       console.clear();

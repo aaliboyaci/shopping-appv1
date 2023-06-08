@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import ProductPage from './Components/ProductPage';
@@ -7,41 +8,30 @@ import UserPage from './Components/UserPage';
 import Cart from './Components/Cart';
 import Login from './Components/Login';
 import Main from './Components/Main';
-
-// createContext oluştur
-export const ProductContext = React.createContext();
-export const CartContext = React.createContext();
+import { MainProvider } from './Context/MainProvider';
 
 function App() {
-  const [page, setPage] = useState(0);
-  const [productNo, setProductNo] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [cart, setCart] = useState([]);
-  const [isLogin, setIsLogin] = useState(0);
-  const [user, setUser] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-
-
-
   return (
     <div className="Container">
-      {/* ProductContext.Provider ile verileri paylaş */}
-      <CartContext.Provider value={{ cart, setCart, isLogin, setIsLogin, user, setUser }}>
-        <ProductContext.Provider value={{ productNo, setProductNo, setPage, isLoading, setIsLoading, currentPage, setCurrentPage }}>
-          <Header setPage={setPage} />
-          <br /><div className='AppPage'>
-            {page === 0 && <Main />}
-            {page === 1 && <Login />}
-            {page === 2 && <UserPage />}
-            {page === 3 && <ProductPage />}
-            {page === 4 && <Cart />}
+      <Router>
+        <MainProvider>
+          <Header />
+          <br />
+          <div className='AppPage'>
+            <Routes>
+              <Route path='/' element={<Main />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/user' element={<UserPage />} />
+              <Route path='/product' element={<ProductPage />} />
+              <Route path='/cart' element={<Cart />} />
+            </Routes>
           </div>
-        </ProductContext.Provider></CartContext.Provider>
-      <br />
-      <Footer />
+        </MainProvider>
+        <br />
+        <Footer />
+      </Router>
       {console.clear()}
     </div>
-
   );
 }
 

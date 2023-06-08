@@ -1,39 +1,68 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './Style.css';
-import { ProductContext, CartContext } from '../App';
+import { MainContext } from '../Context/MainProvider';
 import Loading from './Loading';
 import backimg from "../Assets/backar.png"
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 export default function ProductPage() {
-  const { productNo, isLoading, setIsLoading, setPage } = useContext(ProductContext);
+  const { productNo, isLoading, setIsLoading, cart, dispatch } = useContext(MainContext);
   const [product, setProduct] = useState(null);
-  const { setCart } = useContext(CartContext);
   const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
-
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products/${productNo}`);
+        const data = await response.json();
+        setProduct(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Veri çekme hatası:', error);
+      }
+    };
+
     setIsLoading(true);
     fetchProduct();
-  }, [productNo]);
-
-  const fetchProduct = async () => {
-    try {
-      const response = await fetch(`https://fakestoreapi.com/products/${productNo}`);
-      const data = await response.json();
-      setProduct(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Veri çekme hatası:', error);
-    }
-  };
+  }, [productNo, setIsLoading]);
 
   const addToCart = () => {
-    setCart((prevCart) => [...prevCart, product]);
+    dispatch({ type: 'SET_CART', payload: [...cart, product] });
     setShowAddToCartMessage(true);
     setTimeout(() => {
       setShowAddToCartMessage(false);
     }, 870);
   };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        ease: "linear",
+        duration: 0.3,
+        x: { duration: 0.2 }
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: {
+        ease: "linear",
+        duration: 0.3,
+        x: { duration: 0.2 }
+      },
+    },
+  };
+
+
   return (
     <div>
       {isLoading && <Loading />}
@@ -48,10 +77,18 @@ export default function ProductPage() {
             <h3>${product.price}</h3>
             <button className="add-to-cart" onClick={addToCart}>Add To Cart</button>
             
-            {showAddToCartMessage && <p className="addedToCartMessage"><p> </p><b>Added to cart</b></p>}
+            <AnimatePresence>
+          {showAddToCartMessage && <p className="addedToCartMessage">
+          
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit" >
+            <b>Added to cart</b></motion.div></p>}</AnimatePresence>
             
             <p></p>
-            <button className='goToCart' onClick={() => setPage(0)}><img  style={{ width: `13px` }}src={backimg}></img> Back to shopping</button>
+            <button className='goToCart' onClick={() => navigate('/')}><img  style={{ width: `13px` }}src={backimg} alt='back'></img> Back to shopping</button>
 
           </div>
         </div>

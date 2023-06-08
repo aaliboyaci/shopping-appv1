@@ -1,12 +1,14 @@
 import React from 'react'
-import { CartContext } from '../App';
-import { ProductContext } from '../App';
 import { useContext } from 'react';
 import "./Style.css"
+import { MainContext } from '../Context/MainProvider';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserPage() {
-  const { isLogin, user, setUser, setIsLogin } = useContext(CartContext);
-  const { setPage } = useContext(ProductContext);
+  const { isLogin, user, setUser, setIsLogin } = useContext(MainContext);
+  const navigate = useNavigate(); // useNavigate kancasını burada kullanın
+
+
 
   return (
     <div className="user-page">
@@ -37,7 +39,7 @@ export default function UserPage() {
               <strong>Phone:</strong> {user.phone}
             </p>
             <br />
-            <button className="goToCart" onClick={() => setPage(0)}>
+            <button className="goToCart" onClick={() => navigate('/')}>
               Back to shopping
             </button>
             <br />
@@ -54,7 +56,7 @@ export default function UserPage() {
           </div>
         </div>
       ) : (
-        <button className="goToCart" onClick={() => setPage(1)}>
+        <button className="goToCart" onClick={() => navigate('/cart')}>
           Please Login first
         </button>
       )}

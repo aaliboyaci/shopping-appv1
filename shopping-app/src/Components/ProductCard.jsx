@@ -1,26 +1,51 @@
 import React, { useContext, useState } from 'react';
 import './Style.css';
-import { CartContext, ProductContext } from '../App';
+import { MainContext } from '../Context/MainProvider';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProductCard(props) {
   const { product } = props;
-  const { setProductNo, setPage } = useContext(ProductContext);
-  const { cart, setCart } = useContext(CartContext);
+  const { setProductNo, cart, dispatch } = useContext(MainContext);
   const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
-
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setProductNo(product.id);
-    setPage(3);
-    
+    navigate('/product');
   };
 
   const addToCart = () => {
-    setCart((prevCart) => [...prevCart, product]);
+    dispatch({ type: 'SET_CART', payload: [...cart, product] });
     setShowAddToCartMessage(true);
     setTimeout(() => {
       setShowAddToCartMessage(false);
-    }, 860);
+    }, 900);
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        ease: "linear",
+        duration: 0.3,
+        x: { duration: 0.2 }
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: {
+        ease: "linear",
+        duration: 0.3,
+        x: { duration: 0.2 }
+      },
+    },
   };
 
   return (
@@ -32,9 +57,15 @@ export default function ProductCard(props) {
       </div>
       <button className="addCart" onClick={addToCart}>
         Add to cart
-      </button>
-      {showAddToCartMessage && <p className="addedToCartMessage"><b>Added to cart</b></p>}
-
+      </button><AnimatePresence>
+          {showAddToCartMessage && <p className="addedToCartMessage">
+          
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit" >
+            <b>Added to cart</b></motion.div></p>}</AnimatePresence>
     </div>
   );
 }
