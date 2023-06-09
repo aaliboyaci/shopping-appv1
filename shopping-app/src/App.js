@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as HashRouter, Routes, Route, HashRouter } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import ProductPage from './Components/ProductPage';
@@ -14,7 +14,7 @@ import Checkout from './Components/Checkout';
 function App() {
   return (
     <div className="Container">
-      <Router>
+      <HashRouter>
         <MainProvider>
           <Header />
           <br />
@@ -31,7 +31,7 @@ function App() {
         </MainProvider>
         <br />
         <Footer />
-      </Router>
+      </HashRouter>
       {console.clear()}
     </div>
   );
