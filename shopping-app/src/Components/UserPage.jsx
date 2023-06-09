@@ -39,7 +39,7 @@ export default function UserPage() {
               <strong>Phone:</strong> {user.phone}
             </p>
             <br />
-            <button className="goToCart" onClick={() => navigate('/')}>
+            <button className="goToCart" onClick={() => navigate('/shopping-appv1')}>
               Back to shopping
             </button>
             <br />
@@ -56,7 +56,7 @@ export default function UserPage() {
           </div>
         </div>
       ) : (
-        <button className="goToCart" onClick={() => navigate('/cart')}>
+        <button className="goToCart" onClick={() => navigate('/shopping-appv1/cart')}>
           Please Login first
         </button>
       )}

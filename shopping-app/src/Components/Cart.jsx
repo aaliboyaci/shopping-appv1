@@ -51,7 +51,7 @@ export default function Cart() {
         </>
       ) : (
         <>
-          <button className="goToCart" onClick={() => navigate('/')}>
+          <button className="goToCart" onClick={() => navigate('/shopping-appv1')}>
             <img style={{ width: '13px' }} src={backimg} alt="Back to shopping" />
             Back to shopping
           </button>
@@ -71,8 +71,8 @@ export default function Cart() {
               animate="visible"
               exit="exit"
             >
-              <img className="cartImage" src={item.image} alt={item.title} onClick={() => { setProductNo(item.id); navigate('/product'); }} />
-              <p onClick={() => { setProductNo(item.id); navigate('/product'); }}>{item.title}</p>
+              <img className="cartImage" src={item.image} alt={item.title} onClick={() => { setProductNo(item.id); navigate('/shopping-appv1/product'); }} />
+              <p onClick={() => { setProductNo(item.id); navigate('/shopping-appv1/product'); }}>{item.title}</p>
               <div className="pricetag">
                 <h2>Price: ${item.price}</h2>
                 <p className="clearCart" onClick={() => removeFromCart(item.id)}>
@@ -86,7 +86,7 @@ export default function Cart() {
       <br />
       {console.clear()}
       <h1>Total Price: ${totalPrice.toFixed(2)}</h1>
-      {totalPrice > 0 && <button className="goToCart" onClick={()=> {navigate('/checkout')}}> Check Out</button>}
+      {totalPrice > 0 && <button className="goToCart" onClick={()=> {navigate('/shopping-appv1/checkout')}}> Check Out</button>}
     </div>
   );
 }

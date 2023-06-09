@@ -88,7 +88,7 @@ export default function ProductPage() {
             <b>Added to cart</b></motion.div></p>}</AnimatePresence>
             
             <p></p>
-            <button className='goToCart' onClick={() => navigate('/')}><img  style={{ width: `13px` }}src={backimg} alt='back'></img> Back to shopping</button>
+            <button className='goToCart' onClick={() => navigate('/shopping-appv1')}><img  style={{ width: `13px` }}src={backimg} alt='back'></img> Back to shopping</button>
 
           </div>
         </div>

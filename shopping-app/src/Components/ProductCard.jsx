@@ -12,7 +12,7 @@ export default function ProductCard(props) {
 
   const handleClick = () => {
     setProductNo(product.id);
-    navigate('/product');
+    navigate('/shopping-appv1/product');
   };
 
   const addToCart = () => {

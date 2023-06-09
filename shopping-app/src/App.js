@@ -20,12 +20,12 @@ function App() {
           <br />
           <div className='AppPage'>
             <Routes>
-              <Route path='/' element={<Main />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/user' element={<UserPage />} />
-              <Route path='/product' element={<ProductPage />} />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/checkout' element={<Checkout />} />
+              <Route path='/shopping-appv1' element={<Main />} />
+              <Route path='/shopping-appv1/login' element={<Login />} />
+              <Route path='/shopping-appv1/user' element={<UserPage />} />
+              <Route path='/shopping-appv1/product' element={<ProductPage />} />
+              <Route path='/shopping-appv1/cart' element={<Cart />} />
+              <Route path='/shopping-appv1/checkout' element={<Checkout />} />
             </Routes>
           </div>
         </MainProvider>

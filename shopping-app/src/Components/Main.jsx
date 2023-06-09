@@ -100,7 +100,7 @@ export default function Main() {
         )}
       </div>
       <br />
-      <button className='goToCart' onClick={() => { navigate('/cart') }}>Go to Cart</button>
+      <button className='goToCart' onClick={() => { navigate('/shopping-appv1/cart') }}>Go to Cart</button>
     </div>
   );
 }

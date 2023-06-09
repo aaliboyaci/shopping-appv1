@@ -43,7 +43,7 @@ export default function Login() {
     if (loginUser) {
       setIsLogin(1);
       setUser(loginUser);
-      navigate('/'); // Doğru şekilde navigate kancasını kullanın
+      navigate('/shopping-appv1'); // Doğru şekilde navigate kancasını kullanın
     } else {
       setIsLogin(2);
       console.clear();
