@@ -58,14 +58,14 @@ export default function ProductCard(props) {
       <button className="addCart" onClick={addToCart}>
         Add to cart
       </button><AnimatePresence>
-          {showAddToCartMessage && <p className="addedToCartMessage">
+          {showAddToCartMessage && <b className="addedToCartMessage">
           
         <motion.div
           variants={itemVariants}
           initial="hidden"
           animate="visible"
           exit="exit" >
-            <b>Added to cart</b></motion.div></p>}</AnimatePresence>
+            Added to cart</motion.div></b>}</AnimatePresence>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function Checkout() {
         setPay(true);
         setTimeout(() => {
             setPay(false);
-        }, 2000);
+        }, 2500);
     };
 
     const itemVariants = {
@@ -51,15 +51,15 @@ export default function Checkout() {
             <button className="Pay" onClick={() => payButton(true)}> PAY </button>
             <br></br>
             <AnimatePresence>
-                {pay && <p className="addedToCartMessage">
+                {pay && <div className="addedToCartMessage">
                     <motion.div
                         variants={itemVariants}
                         initial="hidden"
                         animate="visible"
                         exit="exit" >
-                        <b>THANK YOU BUT THIS APP IS A FAKE ONE</b>
+                        THANK YOU BUT THIS STORE IS A <b>FAKE ONE</b>
                     </motion.div>
-                </p>}
+                </div>}
             </AnimatePresence>
         </div>
     )

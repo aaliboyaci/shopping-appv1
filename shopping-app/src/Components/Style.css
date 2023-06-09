@@ -278,6 +278,7 @@ h1:hover {
 }
 
 .addedToCartMessage {
+  padding-top: 10px;
   color: green;
 
 }
