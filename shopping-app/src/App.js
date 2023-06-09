@@ -9,6 +9,7 @@ import Cart from './Components/Cart';
 import Login from './Components/Login';
 import Main from './Components/Main';
 import { MainProvider } from './Context/MainProvider';
+import Checkout from './Components/Checkout';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path='/user' element={<UserPage />} />
               <Route path='/product' element={<ProductPage />} />
               <Route path='/cart' element={<Cart />} />
+              <Route path='/checkout' element={<Checkout />} />
             </Routes>
           </div>
         </MainProvider>

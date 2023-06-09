@@ -86,6 +86,7 @@ export default function Cart() {
       <br />
       {console.log(cart)}
       <h1>Total Price: ${totalPrice.toFixed(2)}</h1>
+      {totalPrice > 0 && <button className="goToCart" onClick={()=> {navigate('/checkout')}}> Check Out</button>}
     </div>
   );
 }
