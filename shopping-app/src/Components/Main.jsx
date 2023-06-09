@@ -10,11 +10,14 @@ export default function Main() {
   const { products, setProducts, isLoading, setIsLoading, currentPage, setCurrentPage } = mainContext;
   const [totalPages, setTotalPages] = useState(0);
   const navigate = useNavigate();
+  const baseurl = "https://fakestoreapi.com/products/"
+  const [category, setCategory] = useState("");
+
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://fakestoreapi.com/products');
+        const response = await fetch(baseurl + category);
         const data = await response.json();
         const itemsPerPage = 9;
         const startIndex = (currentPage - 1) * itemsPerPage;
@@ -29,7 +32,7 @@ export default function Main() {
     };
     setIsLoading(true);
     fetchProducts();
-  }, [currentPage, setIsLoading, setProducts]);
+  }, [currentPage, setIsLoading, setProducts, category]);
 
 
 
@@ -52,24 +55,32 @@ export default function Main() {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="product-grid">
-          {products && products.length > 0 && (
-            products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))
-          )}
+        <><div className="Categories">
+          <p onClick={() => setCategory("")}>All</p>
+          <p onClick={() => setCategory("category/electronics")}>Electronics</p>
+          <p onClick={() => setCategory("category/jewelery")}>jewelery</p>
+          <p onClick={() => setCategory("category/men's%20clothing")}>men's clothing</p>
+          <p onClick={() => setCategory("category/women's%20clothing")}>women's clothing</p>
         </div>
+          <br></br>
+          <div className="product-grid">
+            {products && products.length > 0 && (
+              products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
+            )}
+          </div></>
       )}
       <div className="pagination">
         {currentPage > 1 && (
           <button className="pagebutton" onClick={previousPage}>
-            {"<"}
+            {"< Previous"}
           </button>
         )}
         <p>Page {currentPage}</p>
         {currentPage < totalPages && (
           <button className="pagebutton" onClick={nextPage}>
-            {">"}
+            {"Next >"}
           </button>
         )}
       </div>
