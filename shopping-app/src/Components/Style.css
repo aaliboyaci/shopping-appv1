@@ -283,7 +283,7 @@ h1:hover {
 }
 
 .Categories {
-  background-color: rgb(252, 127, 3);
+  background-color: rgb(252, 161, 3);
   border-radius: 8px;
   padding-left: 20px;
   padding-right: 20px;
@@ -294,25 +294,42 @@ h1:hover {
   margin-bottom: 10px;
   margin-left: 20%;
   margin-right: 20%;
-  height: 125px;
+  height: 100px;
+  list-style-type: none;
 }
 
-.Categories p {
+.Categories li {
 
   padding: 4px;
   color: white;
   margin-right: 10px;
   flex: 1;
   text-align: center;
+  
 }
 
-.Categories p:hover {
+.Categories li:hover {
   cursor: pointer;
   color: rgb(252, 127, 3);
   padding: 5px;
   background-color: white;
   border-radius: 5px;
 
+
+}
+
+.showButton {
+  background-color: rgb(252, 127, 3);
+  border: none;
+  border-radius: 7px;
+  padding: 10px 20px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.showButton:hover {
+  background-color: #fc9403;
+  cursor: pointer;
 }
 
 
@@ -404,7 +421,7 @@ h1:hover {
   }
 
 
-  .Categories p {
+  .Categories li {
     margin-right: 0;
     margin-bottom: 5px;
     flex-basis: 100%;

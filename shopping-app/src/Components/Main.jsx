@@ -12,6 +12,7 @@ export default function Main() {
   const navigate = useNavigate();
   const baseurl = "https://fakestoreapi.com/products/"
   const [category, setCategory] = useState("");
+  const [isCategoriesOn, setisCategoriesOn] = useState(false);
 
 
   useEffect(() => {
@@ -48,6 +49,14 @@ export default function Main() {
     }
   };
 
+  const showCategories = () => {
+    setisCategoriesOn(true);
+  };
+
+  const hideCategories = () => {
+    setisCategoriesOn(false);
+  };
+
   return (
     <div>
       {console.log(products)}
@@ -55,13 +64,20 @@ export default function Main() {
       {isLoading ? (
         <Loading />
       ) : (
-        <><div className="Categories">
-          <p onClick={() => setCategory("")}>All</p>
-          <p onClick={() => setCategory("category/electronics")}>Electronics</p>
-          <p onClick={() => setCategory("category/jewelery")}>jewelery</p>
-          <p onClick={() => setCategory("category/men's%20clothing")}>men's clothing</p>
-          <p onClick={() => setCategory("category/women's%20clothing")}>women's clothing</p>
-        </div>
+        <>{!isCategoriesOn ? (
+          <button className="showButton" onClick={showCategories}>Show Categories</button>
+        ) : (
+          <>
+            <button className="showButton" onClick={hideCategories}>Hide Categories</button>
+            <div className="Categories">
+              <li onClick={() => {setCategory(""); setisCategoriesOn(false)}}>All</li>
+              <li onClick={() => {setCategory("category/electronics"); setisCategoriesOn(false)}}>Electronics</li>
+              <li onClick={() => {setCategory("category/jewelery"); setisCategoriesOn(false)}}>jewelery</li>
+              <li onClick={() => {setCategory("category/men's%20clothing"); setisCategoriesOn(false)}}>men's clothing</li>
+              <li onClick={() => {setCategory("category/women's%20clothing"); setisCategoriesOn(false)}}>women's clothing</li>
+            </div>
+          </>
+        )}
           <br></br>
           <div className="product-grid">
             {products && products.length > 0 && (
