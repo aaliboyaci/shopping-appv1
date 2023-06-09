@@ -59,7 +59,6 @@ export default function Main() {
 
   return (
     <div>
-      {console.log(products)}
       <br />
       {isLoading ? (
         <Loading />

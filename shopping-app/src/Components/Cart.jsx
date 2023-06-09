@@ -84,7 +84,7 @@ export default function Cart() {
         </AnimatePresence>
       </div>
       <br />
-      {console.log(cart)}
+      {console.clear()}
       <h1>Total Price: ${totalPrice.toFixed(2)}</h1>
       {totalPrice > 0 && <button className="goToCart" onClick={()=> {navigate('/checkout')}}> Check Out</button>}
     </div>
