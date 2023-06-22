@@ -42,14 +42,6 @@ export default function Cart() {
   return (
     <div>
       <h1>Cart</h1>
-      {cart.length > 0 ? (
-        <>
-          <button className="clearCart" onClick={() => dispatch({ type: 'CLEAR_CART' })}>
-            Clear Cart
-          </button>
-          <br /> <br />
-        </>
-      ) : (
         <>
           <button className="goToCart" onClick={() => navigate('/shopping-appv1')}>
             <img style={{ width: '13px' }} src={backimg} alt="Back to shopping" />
@@ -58,7 +50,7 @@ export default function Cart() {
           <br />
           <br />
         </>
-      )}
+
 
       <div>
         <AnimatePresence>
@@ -84,6 +76,14 @@ export default function Cart() {
         </AnimatePresence>
       </div>
       <br />
+      {cart.length > 0 && (
+        <>
+          <button className="clearCart" onClick={() => dispatch({ type: 'CLEAR_CART' })}>
+            Clear Cart
+          </button>
+          <br /> <br />
+        </>
+      ) }
       {console.clear()}
       <h1>Total Price: ${totalPrice.toFixed(2)}</h1>
       {totalPrice > 0 && <button className="goToCart" onClick={()=> {navigate('/shopping-appv1/checkout')}}> Check Out</button>}
